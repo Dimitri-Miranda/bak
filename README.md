@@ -98,6 +98,23 @@ Abrir a pasta de backups:
 python main.py -o
 ```
 
+## Exemplos com múltiplos arquivos
+
+Fazer backup de vários arquivos e pastas:
+```bash
+python main.py -b -f arquivo1.txt arquivo2.txt pasta1/
+```
+
+Recuperar múltiplos arquivos por nome completo:
+```bash
+python main.py -r -f backup1_2024-05-18_20-32-10.txt.bak backup2_2024-05-18_2
+```
+
+Recuperar múltiplos arquivos por busca parcial:
+```bash
+python main.py -r -s backup1 backup2
+```
+
 ## Estrutura do Projeto
 
 ```
