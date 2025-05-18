@@ -2,10 +2,11 @@ import os, argparse
 from backup import handle_backup
 from rescue import handle_rescue
 from helpers import clean_baks_directory, get_bak_files_names, open_backup_dir, log_info, log_ok
+from config import default_conifg
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="backup.py",
+        prog="bak",
         description="Tool de backups",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="Exemplos de uso:\n"
@@ -14,6 +15,7 @@ def main():
                "  bak -l\n"
                "  bak -c\n"
                "  bak -o\n"
+               "  bak --init\n"
     )
 
     group = parser.add_mutually_exclusive_group(required=True)
@@ -23,6 +25,7 @@ def main():
     group.add_argument("-c", "--clean", action="store_true", help="Limpa o diretorio de backups")
     group.add_argument("-l", "--list", action="store_true", help="Lista os arquivos no diretorio de backups")
     group.add_argument("-o", "--open", action="store_true", help="Abre o diretorio de backups no Explorer")
+    group.add_argument("--init", action="store_true", help="Criar ou resetar configuração")
 
     parser.add_argument("-f", "--file", nargs="+", help="Arquivo a para o backup ou ser recuperado, use com -b ou -r")
     parser.add_argument("-s", "--search", nargs="+", help="Acha um arquivo por parte do nome do arquivo, use com -r")
@@ -57,6 +60,10 @@ def main():
 
     elif args.open:
         open_backup_dir()
+
+    elif args.init:
+        log_ok("Arquivo de configuração criado/resetado")
+        default_conifg()
 
 if __name__ == "__main__":
     main()
