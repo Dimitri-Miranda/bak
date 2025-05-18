@@ -12,6 +12,7 @@ def main():
         epilog="Exemplos de uso:\n"
                "  bak -b -f meuArquivo.txt\n"
                "  bak -r -f meuArquivo_1747371147836.txt\n"
+               "  bak -r -s meuArquivo\n"
                "  bak -l\n"
                "  bak --clean\n"
                "  bak -o\n"
@@ -28,7 +29,7 @@ def main():
     group.add_argument("--init", action="store_true", help="Criar ou resetar configuração")
 
     parser.add_argument("-f", "--file", nargs="+", help="Arquivo a para o backup ou ser recuperado, use com -b ou -r")
-    parser.add_argument("-s", "--search", nargs="+", help="Acha um arquivo por parte do nome do arquivo, use com -r")
+    parser.add_argument("-s", "--search", nargs="+", help="Recupera um arquivo por parte do nome do arquivo, use com -r")
 
     args = parser.parse_args()
 
@@ -56,7 +57,7 @@ def main():
 
         if file_dict:
             log_ok("Arquivos no diretorio:\n")
-            for file in file_dict: print(f"[{file}] {file_dict[file]}")
+            for file in file_dict: print(f"[\033[91m{file}\033[0m] \033[36m{file_dict[file]}\033[0m")
 
     elif args.open:
         open_backup_dir()
