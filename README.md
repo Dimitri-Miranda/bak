@@ -16,11 +16,11 @@ Uma ferramenta de linha de comando simples e rápida para fazer **backups tempor
 Clone este repositório ou copie os arquivos para um diretório do seu sistema.
 
 ```bash
-git clone https://github.com/seu-usuario/backup-tool.git
-cd backup-tool
+git clone https://github.com/Dimitri-Miranda/bak
+cd bak
 python main.py --help
-Opcional: adicione um alias para o comando, como bak.
 ```
+Opcional: adicione um alias para o comando, como bak.
 
 ### Windows alias:
 
