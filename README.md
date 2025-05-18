@@ -54,12 +54,13 @@ Esse arquivo define:
 | `-b`, `--backup`  | Faz o backup de arquivos ou pastas                           |
 | `-r`, `--rescue`  | Recupera arquivos a partir do nome ou busca              |
 | `-l`, `--list`    | Lista os arquivos no diretório de backups                          | 
-| `-c`, `--clean`   | Limpa todos os arquivos de backup                                |
+| `--clean`         | Limpa todos os arquivos de backup                                |
 | `-o`, `--open`    | Abre o diretório de backups no explorador                  |
 | `-f`, `--file`    | Um ou mais arquivos/diretórios para usar                        |
 | `-s`, `--search`  | Termo(s) para buscar arquivos (fd)                                |
+| `--init`          | Cria/reseta configurações                                    |
 
-Obs: As flags `-b`, `-r`, `-l`, `-c`, `-o` são mutuamente exclusivas.
+Obs: As flags `-b`, `-r`, `-l`, `--clean`, `-o`, `--init` são mutuamente exclusivas.
 
 ## Exemplos
 
@@ -90,12 +91,17 @@ python main.py -l
 
 Limpar todos os backups:
 ```bash
-python main.py -c
+python main.py --clean
 ```
 
 Abrir a pasta de backups:
 ```bash
 python main.py -o
+```
+
+Cria ou reseta o arquivo de configurações:
+```bash
+python main.py --init
 ```
 
 ## Exemplos com múltiplos arquivos
