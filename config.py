@@ -1,9 +1,9 @@
 from pathlib import Path
 import os, configparser
 
-def default_conifg():
-    CONFIG_FILE = Path.home() / ".config" / "bak" / "bak_config.ini"
+CONFIG_FILE = Path.home() / ".config" / "bak" / "bak_config.ini"
 
+def default_conifg():
     config = configparser.ConfigParser(interpolation=None)
     config.add_section("config")
 
@@ -22,8 +22,6 @@ def default_conifg():
 
 
 def load_config():
-    CONFIG_FILE = Path.home() / ".config" / "bak" / "bak_config.ini"
-
     if not os.path.exists(CONFIG_FILE) or (os.stat(CONFIG_FILE).st_size == 0):
         config = default_conifg()
 
