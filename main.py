@@ -13,7 +13,7 @@ def main():
                "  bak -b -f meuArquivo.txt\n"
                "  bak -r -f meuArquivo_1747371147836.txt\n"
                "  bak -l\n"
-               "  bak -c\n"
+               "  bak --clean\n"
                "  bak -o\n"
                "  bak --init\n"
     )
@@ -22,7 +22,7 @@ def main():
 
     group.add_argument("-b", "--backup", action="store_true", help="Faz o backup do arquivo")
     group.add_argument("-r", "--rescue", action="store_true", help="Recupera o arquivo")
-    group.add_argument("-c", "--clean", action="store_true", help="Limpa o diretorio de backups")
+    group.add_argument("--clean", action="store_true", help="Limpa o diretorio de backups")
     group.add_argument("-l", "--list", action="store_true", help="Lista os arquivos no diretorio de backups")
     group.add_argument("-o", "--open", action="store_true", help="Abre o diretorio de backups no Explorer")
     group.add_argument("--init", action="store_true", help="Criar ou resetar configuração")
