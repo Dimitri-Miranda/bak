@@ -2,12 +2,12 @@ from pathlib import Path
 import os, configparser
 
 def default_conifg():
-    CONFIG_FILE = Path.home() / ".local" / "bin" / "scripts" / "bak_config.ini"
+    CONFIG_FILE = Path.home() / ".config" / "bak" / "bak_config.ini"
 
     config = configparser.ConfigParser(interpolation=None)
     config.add_section("config")
 
-    directory = Path.home() / ".local" / "bin" / "bak_temp"
+    directory = Path.home() / ".bak_temp"
 
     config["config"]["directory"] = str(directory)
     config["config"]["file_explorer"] = "explorer"
@@ -22,7 +22,7 @@ def default_conifg():
 
 
 def load_config():
-    CONFIG_FILE = Path.home() / ".local" / "bin" / "scripts" / "bak_config.ini"
+    CONFIG_FILE = Path.home() / ".config" / "bak" / "bak_config.ini"
 
     if not os.path.exists(CONFIG_FILE) or (os.stat(CONFIG_FILE).st_size == 0):
         config = default_conifg()
