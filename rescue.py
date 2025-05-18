@@ -15,7 +15,8 @@ def rescue_file(file_path):
     file_origin = os.path.join(DESTINY_DIR, file_path)
 
     if not os.path.exists(file_origin):
-        raise FileNotFoundError(log_warn(f"Arquivo '{file_path}' não encontrado."))
+        log_warn(f"Arquivo '{file_path}' não encontrado.")
+        return
 
     file_base, file_ext = os.path.splitext(file_path)
 
