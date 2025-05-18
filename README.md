@@ -60,7 +60,7 @@ Esse arquivo define:
 | `-s`, `--search`  | Termo(s) para buscar arquivos (fd)                                |
 | `--init`          | Cria/reseta configurações                                    |
 
-Obs: As flags `-b`, `-r`, `-l`, `-c`, `-o` são mutuamente exclusivas.
+Obs: As flags `-b`, `-r`, `-l`, `--clean`, `-o`, `--init` são mutuamente exclusivas.
 
 ## Exemplos
 
