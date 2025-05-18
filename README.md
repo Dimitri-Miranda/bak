@@ -31,7 +31,7 @@ Conteúdo do `bak.bat`:
 ```batch
 @echo off
 
-python %USERPROFILE%\.local\bin\scripts\main.py %*
+python %USERPROFILE%\local_da_ferramenta\bak\main.py %*
 ```
 
 ## Configuração
