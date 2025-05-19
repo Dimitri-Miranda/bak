@@ -1,8 +1,54 @@
+import os, configparser, platform
 from pathlib import Path
-import os, configparser
+from .logger import log_error
 
 CONFIG_FILE = Path.home() / ".config" / "bak" / "bak_config.ini"
 __version__ = "25.5.1"
+
+def check_os_file_manager():
+    current_os = platform.system()
+
+    if current_os == "Linux":
+        env = os.environ
+
+        file_managers = {
+            "nautilus": ["gnome"],
+            "dolphin": ["kde"],
+            "thunar": ["xfce"],
+            "pcmanfm-qT": ["lxqt"],
+            "pcmanfm": ["lxde"],
+            "nemo": ["cinnamon"],
+            "caja": ["mate"],
+            "io.elementary.files": ["pantheon"]
+        }
+
+        env_vars = [
+            env.get("GNOME_DESKTOP_SESSION_ID", ""),
+            env.get("XDG_CURRENT_DESKTOP", ""),
+            env.get("DESKTOP_SESSION", ""),
+            env.get("GDMSESSION", ""),
+            env.get("KDE_FULL_SESSION", ""),
+            env.get("KDE_SESSION_VERSION", "")
+        ]
+
+        for file_manager, keywords in file_managers.items():
+            for keyword in keywords:
+                if any(keyword in var.lower() for var in env_vars if var):
+                    return file_manager
+
+        log_error("Não foi possível reconhecer o sistema operacional para configurar gerenciador de aquivos padrão. Se o erro persistir, configure manualmente em 'bak_config.ini'.")
+        return "undefined"
+
+    elif current_os == "Windows":
+        return "explorer"
+
+    elif current_os == "Darwin":
+        return "open"
+
+    else:
+        log_error("Não foi possível reconhecer o sistema operacional para configurar gerenciador de aquivos padrão. Se o erro persistir, configure manualmente em 'bak_config.ini'.")
+        return "undefined"
+
 
 def default_conifg():
     config = configparser.ConfigParser(interpolation=None)
@@ -11,7 +57,7 @@ def default_conifg():
     directory = Path.home() / ".bak_temp"
 
     config["config"]["directory"] = str(directory)
-    config["config"]["file_explorer"] = "explorer"
+    config["config"]["file_explorer"] = check_os_file_manager()
     config["config"]["file_archiver"] = "shutil"
 
     CONFIG_FILE.parent.mkdir(parents=True, exist_ok=True)

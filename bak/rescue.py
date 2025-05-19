@@ -1,6 +1,7 @@
 import os, shutil, subprocess
 from .config import load_config
-from .helpers import get_bak_files_names, log_ok, log_warn, log_error
+from .logger import log_ok, log_warn, log_error
+from .helpers import get_bak_files_names 
 
 DESTINY_DIR, FILE_EXPLORER, FILE_ARCHIVER = load_config()
 

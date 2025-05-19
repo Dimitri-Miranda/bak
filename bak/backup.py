@@ -1,7 +1,7 @@
 import os, shutil, subprocess
 from datetime import datetime
 from .config import load_config
-from .helpers import log_ok, log_error, log_warn
+from .logger import log_ok, log_error, log_warn
 
 DESTINY_DIR, FILE_EXPLORER, FILE_ARCHIVER = load_config()
 

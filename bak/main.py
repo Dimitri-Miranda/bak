@@ -1,7 +1,8 @@
 import os, argparse
 from .backup import handle_backup
 from .rescue import handle_rescue
-from .helpers import clean_baks_directory, get_bak_files_names, open_backup_dir, log_info, log_ok
+from .helpers import clean_baks_directory, get_bak_files_names, open_backup_dir
+from .logger import log_info, log_ok
 from .config import default_conifg, __version__
 
 def main():
@@ -64,8 +65,8 @@ def main():
         open_backup_dir()
 
     elif args.init:
-        log_ok("Arquivo de configuração criado/resetado")
         default_conifg()
+        log_ok("Arquivo de configuração criado/resetado")
 
     elif args.version:
         log_ok(f"version: {__version__}")

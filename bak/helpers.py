@@ -1,15 +1,9 @@
 import os, shutil, subprocess
 from .config import load_config
+from .logger import log_warn, log_error
 
 DESTINY_DIR, FILE_EXPLORER, FILE_ARCHIVER = load_config()
 
-def log_info(msg): return (f"\033[35m[INFO]\033[0m {msg}")
-
-def log_ok(msg): print(f"\033[92m[OK]\033[0m {msg}")
-
-def log_warn(msg): print(f"\033[93m[WARN]\033[0m {msg}")
-
-def log_error(msg): print(f"\033[91m[ERRO]\033[0m {msg}")
 
 def get_bak_files_names():
     if not os.path.exists(DESTINY_DIR):
