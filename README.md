@@ -1,6 +1,6 @@
 # Backup Tool (bak)
 
-Uma ferramenta de linha de comando simples e rápida para fazer **backups temporários de arquivos e pastas**, com opção de compressão, recuperação e listagem. Ideal para quem trabalha com código ou arquivos importantes e quer uma forma rápida e prática de fazer backups localmente.
+Uma ferramenta de linha de comando simples e rápida para fazer **backups temporários de arquivos e diretórios**, com opção de compressão, recuperação e listagem. Ideal para quem trabalha com código ou arquivos importantes e quer uma forma rápida e prática de fazer backups localmente.
 
 ## Funcionalidades
 
@@ -16,30 +16,30 @@ Uma ferramenta de linha de comando simples e rápida para fazer **backups tempor
 Clone este repositório ou copie os arquivos para um diretório do seu sistema.
 
 ```bash
-git clone https://github.com/seu-usuario/backup-tool.git
-cd backup-tool
+git clone https://github.com/Dimitri-Miranda/bak
+cd bak
 python main.py --help
-Opcional: adicione um alias para o comando, como bak.
 ```
+Opcional: adicione um alias para o comando, como bak.
 
 ### Windows alias:
 
-Crie um arquivo `.bat` em algum diretório que esteja no seu `PATH`, por exemplo, `bak.bat`.
+Crie um arquivo `.bat` , por exemplo `bak.bat`, em algum diretório que esteja no seu `PATH`.
 
 Conteúdo do `bak.bat`:
 
 ```batch
 @echo off
 
-python %USERPROFILE%\.local\bin\scripts\main.py %*
+python %USERPROFILE%\local_da_ferramenta\bak\main.py %*
 ```
 
 ## Configuração
 
-Ao executar pela primeira vez, o script cria um arquivo de configuração em:
+Ao executar pela primeira vez, ou usar a flag `--init`, o script criará um arquivo de configuração em:
 
 ```bash
-~/.local/bin/scripts/bak_config.ini
+~\.config\bak\bak_config.ini
 ```
 Esse arquivo define:
 
@@ -47,18 +47,25 @@ Esse arquivo define:
 - Comando para abrir o explorador (explorer, xdg-open, etc.)
 - Mecanismo de compactação (shutil, 7z, etc.)
 
+o script também criará uma diretório para os backups em:
+
+```bash
+~\.bak_temp
+```
+Este diretório conterá os backups que você fará (é possível alterar no arquivo de configuração `bak_config.ini`).
+
 ## Como usar
 
-| Flag            | Descrição                                                                            |
-|-----------------|------------------------------------------------------------|
-| `-b`, `--backup`  | Faz o backup de arquivos ou pastas                           |
-| `-r`, `--rescue`  | Recupera arquivos a partir do nome ou busca              |
-| `-l`, `--list`    | Lista os arquivos no diretório de backups                          | 
-| `--clean`         | Limpa todos os arquivos de backup                                |
-| `-o`, `--open`    | Abre o diretório de backups no explorador                  |
-| `-f`, `--file`    | Um ou mais arquivos/diretórios para usar                        |
-| `-s`, `--search`  | Termo(s) para buscar arquivos (fd)                                |
-| `--init`          | Cria/reseta configurações                                    |
+| Flag              | Descrição                                     |
+|-------------------|-----------------------------------------------|
+| `-b`, `--backup`  | Faz o backup de arquivos ou diretórios        |
+| `-r`, `--rescue`  | Recupera arquivos a partir do nome ou busca   |
+| `-l`, `--list`    | Lista os arquivos no diretório de backups     | 
+| `--clean`         | Limpa todos os arquivos de backup             |
+| `-o`, `--open`    | Abre o diretório de backups no explorador     |
+| `-f`, `--file`    | Um ou mais arquivos/diretórios para usar      |
+| `-s`, `--search`  | Termo(s) para buscar arquivos (fd)            |
+| `--init`          | Cria/reseta configurações                     |
 
 Obs: As flags `-b`, `-r`, `-l`, `--clean`, `-o`, `--init` são mutuamente exclusivas.
 
@@ -69,14 +76,19 @@ Fazer backup de um arquivo:
 python main.py -b -f meuArquivo.txt
 ```
 
-Fazer backup de uma pasta (compactada):
+Fazer backup de um diretório (compactada):
 ```bash
-python main.py -b -f minhaPasta/
+python main.py -b -f meuDiretório
 ```
 
 Recuperar arquivo por nome:
 ```bash
 python main.py -r -f meuArquivo_2024-05-18_20-32-10.txt.bak
+```
+
+Recuperar arquivo por índice:
+```bash
+python main.py -r -f 0
 ```
 
 Recuperar arquivo por busca (usa `fd`):
@@ -94,7 +106,7 @@ Limpar todos os backups:
 python main.py --clean
 ```
 
-Abrir a pasta de backups:
+Abrir o diretório de backups:
 ```bash
 python main.py -o
 ```
@@ -106,9 +118,9 @@ python main.py --init
 
 ## Exemplos com múltiplos arquivos
 
-Fazer backup de vários arquivos e pastas:
+Fazer backup de vários arquivos e diretórios:
 ```bash
-python main.py -b -f arquivo1.txt arquivo2.txt pasta1/
+python main.py -b -f arquivo1.txt arquivo2.txt diretório1
 ```
 
 Recuperar múltiplos arquivos por nome completo:
