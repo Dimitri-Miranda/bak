@@ -7,7 +7,7 @@ DESTINY_DIR, FILE_EXPLORER, FILE_ARCHIVER = load_config()
 
 
 def compress_dir(directory):
-    if FILE_ARCHIVER == "7z" or FILE_ARCHIVER == "7zip":
+    if FILE_ARCHIVER.lower() == "7z" or FILE_ARCHIVER == "7zip":
         try:
             file_zip = f"{directory}.zip"
             subprocess.run([FILE_ARCHIVER, "a", file_zip, directory], check=True)
@@ -17,11 +17,16 @@ def compress_dir(directory):
             
         except subprocess.CalledProcessError as e:
             log_error(f"Falha ao comprimir o diretorio '{directory}', cheque se o 7zip esta no PATH {e}")
-
+        except FileNotFoundError:
+            log_error("Diretorio não encontrado")
+        except PermissionError:
+            log_error("Sem permissão para acessar arquivos ou salvar o arquivo")
+        except Exception as e:
+            log_error(f"Erro inesperado ao usar 7-Zip: {e}")
     # fallback para shutill
     else:
         try:
-            shutil.make_archive(directory, "zip", root_dir=directory)
+            shutil.make_archive(base_name=directory, format="zip", root_dir=directory)
             log_ok(f"Diretorio '{os.path.basename(directory)}' compactado com sucesso")
             file_zip = f"{directory}.zip"
 
@@ -31,10 +36,8 @@ def compress_dir(directory):
             log_error("Diretorio não encontrado")
         except PermissionError:
             log_error("Sem permissão para acessar arquivos ou salvar o arquivo")
-        except ValueError as e:
-            log_error(f"{e}")
-        except OSError as e:
-            log_error(f"Erro inesperado do sistema: {e}")
+        except Exception as e:
+            log_error(f"Erro inesperado ao usar shutil: {e}")
 
 def copy_file_to_bak(file_path):
     if not os.path.exists(file_path):
