@@ -13,6 +13,17 @@ Bak é uma ferramenta de linha de comando simples e rápida para fazer **backups
 
 ## Instalação
 
+Há vários métodos para testar/instalar o Glances em seu sistema.
+
+### 1. PyPI: Pip, a maneira padrão
+Bak está no PyPI. Ao usar o PyPI, você estará usando a versão estável mais recente.
+Para instalar o Bak, basta usar a linha de comando `pip`.
+
+```bash
+pip install dim-back
+```
+
+### 2. Instalação via repositório Git
 Clone este repositório para um diretório do seu sistema.
 
 ```bash
@@ -20,7 +31,7 @@ git clone https://github.com/Dimitri-Miranda/bak
 cd bak
 python -m bak --help
 ```
-Opcional: se você instalou via clone, adicione um alias para o comando.
+> Nota: essa abordagem não instala o pacote globalmente. Para facilitar o uso, recomenda-se configurar um alias.
 
 ### Windows alias:
 
@@ -39,6 +50,20 @@ python -m bak %*
 
 endlocal
 ```
+
+### Linux/macOS alias:
+
+Crie um alias no seu shell (`bash`, `zsh`, etc.) para facilitar o uso do Bak via linha de comando.
+Abra seu arquivo de configuração do shell (`.bashrc`, `.zshrc`, ou equivalente) e adicione o alias abaixo, ajustando o caminho conforme necessário.
+
+```bash
+alias bak='PYTHONPATH="$HOME/diretorio_onde_voce_clonou/bak" python -m bak'
+```
+Depois de salvar o arquivo, recarregue o shell com:
+```bash
+source ~/.bashrc  # ou ~/.zshrc
+```
+Agora você pode usar o comando `bak` diretamente no terminal:
 
 ## Configuração
 
@@ -168,7 +193,7 @@ bak/
     ├── backup.py       # Lógica de backup de arquivos e diretórios
     ├── config.py       # Leitura e criação do arquivo de configuração
     ├── helpers.py      # Funções auxiliares e utilitárias
-    ├── logger.py      # Funções de logging
+    ├── logger.py       # Funções de logging
     ├── main.py         # Ponto de entrada (define e processa os argumentos CLI)
     └── rescue.py       # Lógica de recuperação de backups
 ```
