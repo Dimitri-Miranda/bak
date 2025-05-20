@@ -12,7 +12,6 @@ authors = [
 readme = "README.md"
 license = { text = "MIT" }
 dependencies = []
-url = "https://github.com/Dimitri-Miranda/bak"
 
 [project.scripts]
 bak = "bak.main:main"
