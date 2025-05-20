@@ -3,15 +3,16 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "bak"
+name = "dim-bak"
 version = "25.05.1"
-description = "Uma ferramenta de linha de comando simples e rápida para fazer backups temporários de arquivos e diretórios, com opção de compressão, recuperação e listagem"
+description = "Uma ferramenta de linha de comando simples e rápida para fazer backups temporários de arquivos e diretórios."
 authors = [
   { name="Dimitri Miranda" }
 ]
 readme = "README.md"
 license = { text = "MIT" }
 dependencies = []
+url = "https://github.com/Dimitri-Miranda/bak"
 
 [project.scripts]
 bak = "bak.main:main"
