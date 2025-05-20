@@ -21,6 +21,7 @@ Para instalar o Bak, basta usar a linha de comando `pip`.
 
 ```bash
 pip install dim-back
+bak --help
 ```
 
 ### 2. Instalação via repositório Git
