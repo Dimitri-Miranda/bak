@@ -168,6 +168,7 @@ bak/
     ├── backup.py       # Lógica de backup de arquivos e diretórios
     ├── config.py       # Leitura e criação do arquivo de configuração
     ├── helpers.py      # Funções auxiliares e utilitárias
+    ├── logger.py      # Funções de logging
     ├── main.py         # Ponto de entrada (define e processa os argumentos CLI)
     └── rescue.py       # Lógica de recuperação de backups
 ```
@@ -181,7 +182,6 @@ bak/
 ## Roadmap
 
 - Suporte para diferentes compressores
-- Suporte multiplataforma
 - Testes automatizados com pytest
 
 ## Licença
