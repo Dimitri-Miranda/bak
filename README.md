@@ -1,5 +1,8 @@
 # Bak
 
+![PyPI](https://img.shields.io/pypi/v/dim-bak)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Bak é uma ferramenta de linha de comando simples e rápida para fazer **backups temporários de arquivos e diretórios**, com opção de compressão, recuperação e listagem. Ideal para quem trabalha com código ou arquivos importantes e quer uma forma rápida e prática de fazer backups localmente.
 
 ## Funcionalidades
