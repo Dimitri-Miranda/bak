@@ -1,9 +1,10 @@
 import os, argparse
 from .backup import handle_backup
 from .rescue import handle_rescue
-from .helpers import clean_baks_directory, get_bak_files_names, open_backup_dir
+from .helpers import get_bak_files_names, open_backup_dir
 from .logger import log_info, log_ok
 from .config import default_conifg, __version__
+from .clean import handle_clean
 
 def main():
     parser = argparse.ArgumentParser(
@@ -51,8 +52,13 @@ def main():
             for file in rescue_files: log_ok(f"Arquivo '{os.path.basename(file)}' recuperado")
     
     elif args.clean:
-        clean_baks_directory()
-        log_ok("Diretorio limpo com sucesso")
+        if args.file:
+            handle_clean(args.file)
+
+        else:
+            clean_files = handle_clean()
+            if clean_files:
+                for file in clean_files: log_ok(f"Arquivo '{file}' recuperado")
 
     elif args.list:
         file_dict = get_bak_files_names()
