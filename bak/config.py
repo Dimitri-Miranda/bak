@@ -3,7 +3,7 @@ from pathlib import Path
 from .logger import log_error
 
 CONFIG_FILE = Path.home() / ".config" / "bak" / "bak_config.ini"
-__version__ = "25.5.1"
+__version__ = "25.5.2"
 
 def check_os_file_manager():
     current_os = platform.system()

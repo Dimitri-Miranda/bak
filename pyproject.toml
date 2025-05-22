@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dim-bak"
-version = "25.05.1"
+version = "25.05.2"
 description = "Uma ferramenta de linha de comando simples e rápida para fazer backups temporários de arquivos e diretórios."
 authors = [
   { name="Dimitri Miranda" }
